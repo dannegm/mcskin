@@ -6,7 +6,7 @@ import { parseQuery } from '@/utils/helpers'
 
 const userController = {
 	async GET (req, res) {
-        const uuid = req.params.uuid.replace(/-/g, '')
+        const uuid = req.params.uuid.replace(/-/g, '').trim()
 
 		if (!uuid) {
             try {
@@ -34,7 +34,7 @@ const userController = {
 
 	async POST (req, res) {
         const { uuid, username } = req.body
-        const trimmedUUID = uuid.replace(/-/g, '')
+        const trimmedUUID = uuid.replace(/-/g, '').trim()
 
         const { destination, filename } = req.file
         const skinPath = `${destination}${trimmedUUID}.png`
@@ -44,7 +44,7 @@ const userController = {
         const playerData = {
             username,
             trimmedUUID,
-            fullUUID: uuid,
+            fullUUID: uuid.trim(),
             skin: `${req.app.locals.skinsPath}/${trimmedUUID}.png`,
         }
 
@@ -54,7 +54,7 @@ const userController = {
     },
 
     async AVATAR (req, res) {
-        const uuid = req.params.uuid.replace(/-/g, '')
+        const uuid = req.params.uuid.replace(/-/g, '').trim()
         const [ path, query ] = req.originalUrl.split('?')
         const hasOverlay = !!parseQuery(query).overlay
 
