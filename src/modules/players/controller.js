@@ -45,7 +45,6 @@ const userController = {
             username,
             trimmedUUID,
             fullUUID: uuid.trim(),
-            skin: `${req.app.locals.skinsPath}/${trimmedUUID}.png`,
         }
 
         db.push(`/players/${trimmedUUID}`, playerData)
