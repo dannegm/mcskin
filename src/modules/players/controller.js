@@ -6,7 +6,7 @@ import { parseQuery } from '@/utils/helpers'
 
 const userController = {
 	async GET (req, res) {
-        const uuid = req.params.uuid.replace(/-/g, '').trim()
+        const uuid = req.params.uuid && req.params.uuid.replace(/-/g, '').trim()
 
 		if (!uuid) {
             try {
